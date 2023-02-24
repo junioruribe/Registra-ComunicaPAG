@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pag2</title>
+    <style type="text/css">
+        div{ width: 600px; height:570px; margin:auto; border-style:double; text-align: center; background-color: rgb(243, 118, 118); }
+        #div0{ background-color: rgb(144, 243, 243); height: 570px; width: 800px; border-color: black; border-radius: 100px;  }
+      </style>
+      <script type="text/javascript">
+
+
+        function Liquidar(){
+            
+            var  ho,he,vho,vpho,vphen,vphed,vphe,ttp,doc,nom,gen,edad,ht;
+            doc= document.getElementById('txtDocumento').value;
+            nom= document.getElementById('txtNombre').value;
+            gen= document.getElementById('txtGenero').value;
+            edad= document.getElementById('txtEdad').value;
+            ht= document.getElementById('txtht').value;
+            ho=getHO(ht);
+            he=getHE(ht);
+            vho=getVHO(genero,edad);
+            vphen=getVPHEN(gen,edad,ht);
+            vphed=getVPHED(gen,edad,ht);
+            vphe=getVPHE(gen,edad,ht);
+            ttp=getVTP(gen,edad,ht);
+            document.getElementById('txtho').value=ho;
+            document.getElementById('txthe').value=he;
+            document.getElementById('txtvho').value=vho;
+            document.getElementById('txtvphen').value=vphen;
+            document.getElementById('txtvphed').value=vphed;
+            document.getElementById('txtvphe').value=vphe;
+            document.getElementById('txttp').value=ttp;
+        }
+
+ 
+        
+   
+
+        function getHO(ht){
+            var ho;
+            if (ht<=80) {
+                ho=ht;
+            } else {
+                ho=ht-getHE(ht);
+            }
+            return ho;
+        }
+
+        function getVPHO(gen,edad,ht){
+            var vpho;
+            vpho=getHO(ht)*getVHO(gen,edad);
+            return vpho;
+        
+         }
+
+        function  getVHO(genero,edad){
+            var hombre,mujer,vho,edad;
+            if (genero===hombre) {
+            if (edad < 18) {
+                vho = 5000;
+            } else if (edad >= 18) {
+                vho = 6000;
+            }
+        } else if (genero===mujer) {
+            if (edad < 18) {
+                vho = 7000;
+            } else if (edad >= 18) {
+                vho = 8000;
+            }
+        }
+        return vho;
+        }
+
+        function getHE(ht){
+            var he="";
+            if (ht>80) {
+                he= ht-80;
+            } 
+            return he;
+         }
+
+         function getVPHEN(gen,edad,ht) {
+          var vphen;
+          if (getHE(ht)<=8) {
+            vphen= getHE(ht)*1.25*getVHO(gen,edad);
+          } else {
+            vphen=8*1.25*getVHO(gen,edad);
+          }
+            return vphen;
+         }
+
+         function getVPHED(gen,edad,ht){
+         var hd,vphed;
+         hd= getHE(ht)-8;
+         vphed= hd*1.75*getVHO(gen,edad);
+         return vphed;
+         }
+
+         function getVPHE(gen,edad,ht) {
+         var vphe;
+         vphe= getVPHEN(gen,edad,ht);
+         if (getVPHED(gen,edad,ht)!=0) {
+            vphe=getVPHEN(gen,edad,ht)+getVPHED(gen,edad,hr);
+        }  
+         return vphe;
+        }
+
+         function getVTP(gen,edad,ht){
+            var tp;
+            tp=getVPHO(gen,edad,ht)+getVPHE(gen,edad,ht);
+            return tp;
+         }
+
+         function recibir(){
+        doc=window.localStorage.getItem('documento');
+        nom=window.localStorage.getItem('nombre');
+        edad=window.localStorage.getItem('edad');
+        hrt=window.localStorage.getItem('horast');
+        gen=window.localStorage.getItem('genero');
+        
+        document.getElementById('txtDocumento').value=doc;
+        document.getElementById('txtNombre').value=nom;
+        document.getElementById('txtEdad').value=edad;
+        document.getElementById('txtht').value=hrt;
+        document.getElementById('txtGenero').value=gen;
+        
+
+        window.localStorage.clear()
+      }
+      </script>
+
+      
+</head>
+<H1 align="center">InfoLiquidacion</H1>
+<body onload="recibir()">
+    <div id="div0">
+        <div>
+            <br><br>
+            Documento
+            <input type="text" id="txtDocumento" >
+            <br><br>
+            Nombre
+            <input type="text" id="txtNombre" >
+            <br><br>
+            Genero
+            <input type="text" id="txtGenero" >
+            <br><br>
+            Edad
+            <input type="text" id="txtEdad" >
+            <br><br>
+            HT
+            <input type="text" id="txtht" >
+            <br><br>
+            HO
+            <input type="text" id="txtho">
+            <br><br>
+            HE
+            <input type="text" id="txthe">
+            <br><br>
+            VHO
+            <input type="text" id="txtvho">
+            <br><br>
+            VPHO
+            <input type="text" id="txtvpho">
+            <br><br>
+            VPHEN
+            <input type="text" id="txtvphen">
+            <br><br>
+            VPHED
+            <input type="text" id="txtvphed">
+            <br><br>
+            VPHE
+            <input type="text" id="txtvphe">
+            <br><br>
+            TP
+            <input type="text" id="txttp">         
+            <br><br>
+            <input type="submit" value="Liquidar" onclick="liquidar()">
+            <br><br>
+            <hr>
+            <a href="practica.html">atras</a>
+            <hr>
+        </div>
+    </div>
+</body>
+</html>

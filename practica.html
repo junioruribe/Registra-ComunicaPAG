@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pag1</title>
+    <style type="text/css">
+        div{ width: 600px; height:300px; margin:auto; border-style:double; text-align: center; background-color: rgb(248, 153, 153);
+             font-style:oblique;}
+        #div0{ background-color: rgb(213, 248, 248); height: 400px; width: 800px; border-radius: 100px; }
+        #div3{border: rgb(0, 0, 0) solid; width:500px ; height:25px ; text-align: center; margin: auto; background-color: rgb(228, 52, 52);}
+     </style>
+    <script type="text/javascript">
+
+      let lista=[]
+
+        function registrar(){
+            let nom,doc,hrt,gen,edad;
+             nom=document.getElementById('txtNombre').value
+             doc=document.getElementById('txtDocumento').value
+             hrt=document.getElementById('txtHorasT').value
+             edad=document.getElementById('txtEdad').value
+             gen=document.getElementById('txtGenero').value
+            let obj={
+                nombre:nom,
+                documento:doc,
+                horast:hrt,
+                edad:edad,
+                genero:gen
+            }
+            lista.push(obj)
+         }
+
+         function limpiar(){
+            document.getElementById('txtNombre').value="";
+            document.getElementById('txtDocumento').value="";
+            document.getElementById('txtHorasT').value="";
+            document.getElementById('txtEdad').value="";
+            document.getElementById('txtGenero').value="";
+        }
+
+        function mostrar(){
+            var datos=""
+            datos=""
+            lista.forEach(function(arg){
+                datos+='Nombre: '+arg.nombre+'\n'
+                datos+='Documento: '+arg.documento+'\n'
+                datos+='HorasT: '+arg.horast+'\n'
+                datos+='Edad: '+arg.edad+'\n'
+                datos+='Genero: '+arg.genero+'\n\n'
+            
+            })
+            alert(datos)
+        }
+
+        var opcion;
+        function Confirmar(arg) {
+        opcion = arg;
+        }
+
+        function infoliquidacion(){
+            let doc,nom,gen,edad,hrt;
+            nom=window.document.getElementById('txtNombre').value;
+            doc=window.document.getElementById('txtDocumento').value
+            hrt=window.document.getElementById('txtHorasT').value
+            edad=window.document.getElementById('txtEdad').value
+            gen=window.document.getElementById('txtGenero').value
+       
+
+            window.localStorage.setItem('nombre',nom)
+            window.localStorage.setItem('documento',doc)
+            window.localStorage.setItem('horast',hrt)
+            window.localStorage.setItem('edad',edad)
+            window.localStorage.setItem('genero',gen)
+     
+
+            window.location.href='Recibirdatos.html';
+        }
+    </script>
+</head>
+<body>
+    <H1 align="center">RegistrarNomina</H1>
+     <div id="div0" align="center">
+        <div>
+            <br><br>
+            Nombre
+            <input type="text" id="txtNombre">
+            <br><br>
+            Documento
+            <input type="text" id="txtDocumento">
+            <br><br>
+            horas T
+            <input type="text" id="txtHorasT">
+            <br><br>
+            Edad
+            <input type="text" id="txtEdad">
+            <br><br>
+            <span>Genero</span>
+            <select name="Genero" id="txtGenero">
+                <option value="Seleccione">Seleccione</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+            </select>
+            <hr>
+            <div id="div3" align="center">
+                <input type="button" value="Registrar" onclick="registrar()">
+                &nbsp;&nbsp;&nbsp;
+                <input type="button" value="Limpiar" onclick="limpiar()">
+                &nbsp;&nbsp;&nbsp;
+                <input type="button" value="Mostrar" onclick="mostrar()">
+                &nbsp;&nbsp;&nbsp;
+                <input type="submit" value="InfoLiquidacion" onclick="infoliquidacion()">
+                &nbsp;&nbsp;&nbsp;
+            </div>
+          <hr>
+        </div>
+    </div>
+</body>
+</html>
